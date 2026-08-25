@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp mời tốt nghiệp</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <!-- Container chính để giữ tất cả các phần tử trên nền -->
+    <div class="scene-container" id="sceneContainer">
+        <!-- Ảnh nền -->
+        <img src="assets/img/bg.png" alt="Cảnh nền" class="background-image">
+
+        <!-- Lớp phong thư MẶT SAU (chỉ chứa lòng thư và nắp thư mở) -->
+        <div class="envelope-back-container" id="envelopeBackContainer">
+            <img src="assets/img/envelope_open.png" alt="Bức thư mở mặt sau" class="open-letter-back">
+        </div>
+
+        <!-- 3 Vật phẩm bay (nằm bên ngoài envelope-container để bay tự do khắp màn hình) -->
+        <div class="interactive-items-container" id="itemsContainer">
+            <!-- Ảnh tốt nghiệp -->
+            <div class="floating-item photo-item" id="photoItem">
+                <div class="photo-card">
+                    <img src="assets/img/photo_card.jpg" alt="Ảnh tốt nghiệp">
+                </div>
+            </div>
+
+            <!-- Đĩa than -->
+            <div class="floating-item vinyl-item" id="vinylItem">
+                <div class="vinyl-disc">
+                    <img src="assets/img/disk.jpg" alt="Đĩa than" class="vinyl-image">
+                    <div class="vinyl-center"></div>
+                </div>
+            </div>
+
+            <!-- Thiệp mời -->
+            <div class="floating-item card-item" id="cardItem">
+                <div class="card-frame" style="background-image: url('assets/img/invitation.png');">
+                    <div class="invitation-text" id="invitationText">
+                        <div class="title-main">Phan Linh's</div>
+                        <div class="title-sub">graduation</div>
+                        <div class="invite-badge">YOU'RE INVITED</div>
+                        <div class="invite-desc">to my graduation photoshoot</div>
+                        <div class="details-divider">
+                            <span class="star">★</span>
+                            <span class="line"></span>
+                            <span class="star">★</span>
+                        </div>
+                        <div class="detail-item place">
+                            <span class="label">Place:</span> Trường Đại học Giao thông Vận tải
+                        </div>
+                        <div class="detail-item date">07.09.2026</div>
+                        <div class="detail-item time">2PM - 3.30PM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lớp phong thư MẶT TRƯỚC (chứa nắp túi thư mở mặt trước, thư đóng, sáp seal) -->
+        <div class="envelope-container" id="envelopeContainer">
+            <!-- Thư đóng -->
+            <img src="assets/img/envelope_closed.png" alt="Bức thư đóng" class="closed-letter">
+            
+            <!-- Nút khóa (sáp seal) - chúng ta sẽ đặt nó đè lên thư -->
+            <div class="lock-button" id="lockButton">
+                <img src="assets/img/lock_button.png" alt="Nút khóa">
+            </div>
+            
+            <!-- Thư mở mặt trước (túi thư) -->
+            <img src="assets/img/envelope_open-2.png" alt="Bức thư mở mặt trước" class="open-letter-front" id="openLetterFront">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
