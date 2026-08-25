@@ -31,7 +31,7 @@ body, html {
 /* --- Lớp phong thư MẶT SAU (chứa lòng thư và nắp thư mở) --- */
 .envelope-back-container {
     position: absolute;
-    bottom: 45%; /* Nâng phong thư lên cao hơn (khoảng 45%) */
+    top: 58vh; /* Định vị theo chiều dọc màn hình viewport để luôn hiện ngay khi vào trang */
     left: 50%;
     transform: translateX(-50%);
     width: 320px; /* Chiều rộng cố định cho phong thư */
@@ -61,7 +61,7 @@ body, html {
 /* --- Lớp phong thư MẶT TRƯỚC (chứa túi thư, thư đóng, sáp seal) --- */
 .envelope-container {
     position: absolute;
-    bottom: 45%; /* Đồng bộ chiều cao với mặt sau phong thư */
+    top: 58vh; /* Đồng bộ chiều cao với mặt sau phong thư */
     left: 50%;
     transform: translateX(-50%);
     width: 320px;
@@ -80,7 +80,7 @@ body, html {
 /* --- Định dạng chung cho vật phẩm bay --- */
 .floating-item {
     position: absolute;
-    bottom: calc(45% + 50px); /* Khớp với khe mở thư (phong thư ở bottom 45%) */
+    top: calc(58vh + 30px); /* Khớp với khe mở thư (phong thư ở top 58vh) */
     left: 50%;
     opacity: 0;
     pointer-events: none;
@@ -251,7 +251,7 @@ body, html {
 }
 
 .scene-container.envelope-opened .card-item {
-    transform: translate(-40px, -20px) scale(0.42) rotate(14deg);
+    transform: translate(15px, -20px) scale(0.42) rotate(14deg);
 }
 
 /* Hiệu ứng di chuột khi đang xếp trong thư */
@@ -269,13 +269,13 @@ body, html {
 }
 
 .scene-container.envelope-opened:not(.spread-out) .card-item:hover {
-    transform: translate(-40px, -40px) scale(0.46) rotate(10deg);
+    transform: translate(15px, -40px) scale(0.46) rotate(10deg);
 }
 
 
 /* --- STATE 2: Các vật phẩm bay ra màn hình (Spread Out) --- */
 .scene-container.spread-out .floating-item {
-    bottom: 80%; /* Bay lên cao hẳn ở bầu trời để lấp đầy khoảng trống */
+    top: 10vh; /* Bay lên bầu trời theo tỉ lệ màn hình viewport */
     pointer-events: auto;
 }
 
@@ -297,7 +297,7 @@ body, html {
 
 .scene-container.spread-out .card-item {
     left: 50%;
-    bottom: 70%; /* Đặt thiệp mời ở vị trí cao hơn để bố cục cân đối */
+    top: 24vh; /* Bố cục thiệp mời nổi ở trung tâm bầu trời */
     transform: translate(-50%, 0) scale(1) rotate(0deg);
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
@@ -414,7 +414,7 @@ body, html {
 /* --- TƯƠNG THÍCH ĐIỆN THOẠI (Responsive Mobile) --- */
 @media (max-width: 768px) {
     .envelope-container, .envelope-back-container {
-        bottom: 35%; /* Đặt thấp hơn một chút trên mobile để cân đối màn hình nhỏ */
+        top: 50vh; /* Nâng phong thư lên 50vh trên mobile để cân đối màn hình */
         width: 240px;
         height: 193px; /* 240 * (791 / 983) = 193px */
     }
@@ -425,7 +425,7 @@ body, html {
     }
 
     .floating-item {
-        bottom: calc(35% + 40px); /* Đồng bộ vị trí xuất phát theo phong thư */
+        top: calc(50vh + 25px); /* Đồng bộ vị trí xuất phát theo phong thư */
     }
 
     /* Kích thước thu nhỏ của các vật phẩm trên điện thoại */
@@ -503,19 +503,125 @@ body, html {
     /* Vị trí các vật phẩm khi bay lên (Mobile) */
     .scene-container.spread-out .photo-item {
         left: 24%;
-        bottom: 74%; /* Nhô cao hơn */
+        top: 12vh; /* Vị trí bay lên theo tỉ lệ màn hình dọc */
         transform: translate(-50%, 0) scale(1) rotate(-8deg);
     }
 
     .scene-container.spread-out .vinyl-item {
         left: 76%;
-        bottom: 74%; /* Nhô cao hơn */
+        top: 12vh;
         transform: translate(-50%, 0) scale(1) rotate(0deg);
     }
 
     .scene-container.spread-out .card-item {
         left: 50%;
-        bottom: 42%; /* Đặt nổi bật phía trên phong thư */
+        top: 38vh; /* Cân đối nổi bật trên màn hình điện thoại */
         transform: translate(-50%, 0) scale(1.1) rotate(0deg);
+    }
+}
+
+/* --- PHẦN BẢN ĐỒ / ĐỊA CHỈ UTC (BOTTOM SECTION) --- */
+/* Container chính chứa cả ảnh và nút */
+.container {
+    position: absolute; /* Đưa vào cùng hệ tọa độ tuyệt đối với phong thư */
+    top: calc(58vh + 360px); /* Đặt ngay dưới đáy phong thư */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%; /* Chiều rộng khung ảnh */
+    max-width: 90vw;
+    z-index: 15;
+    margin: 0 auto 50px auto; /* Thêm margin bottom để cuộn mượt mà */
+    border-radius: 12px;
+    overflow: visible;
+}
+
+/* Ảnh tốt nghiệp photo_2 nằm dưới */
+.photo-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+/* Khối định vị nút và icon đè lên trên ảnh */
+.map-link-container {
+    position: absolute;
+    top: 50%; /* Canh giữa tâm ảnh */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: auto;
+    z-index: 10; /* Đảm bảo nằm trên ảnh */
+    pointer-events: auto;
+}
+
+/* Gim vị trí (luôn xoay vòng tại chỗ và bay nhẹ) */
+.map-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    animation: spinAndFloat 4s ease-in-out infinite;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    display: block;
+}
+
+/* Hiệu ứng 3D xoay vòng tròn tại chỗ kết hợp bay nhấp nhô */
+@keyframes spinAndFloat {
+    0% {
+        transform: translateY(0) rotateY(0deg);
+    }
+    50% {
+        transform: translateY(-6px) rotateY(180deg);
+    }
+    100% {
+        transform: translateY(0) rotateY(360deg);
+    }
+}
+
+/* Nút chỉ đường UTC */
+.map-button {
+    background: rgba(255, 178, 189, 0.85); /* Màu hồng nhạt trong suốt giống ảnh */
+    color: #000000; /* Chữ đen giống ảnh */
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, background 0.2s ease;
+    display: inline-block;
+}
+
+.map-button:hover {
+    transform: scale(1.05);
+    background: rgba(255, 178, 189, 1);
+}
+
+/* Responsive cho Mobile */
+@media (max-width: 768px) {
+    .container {
+        top: calc(50vh + 205px); /* Đồng bộ theo mốc 50vh của thư trên mobile */
+        width: 220px;
+        margin-bottom: 30px;
+    }
+
+    .map-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .map-button {
+        font-size: 11px;
+        padding: 6px 12px;
     }
 }
