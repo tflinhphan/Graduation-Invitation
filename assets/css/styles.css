@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 5000px;
     overflow-y: auto; /* Cho phép cuộn trang dọc để xem hết hình nền */
     overflow-x: hidden;
     font-family: 'Montserrat', sans-serif;
@@ -607,6 +607,169 @@ body, html {
     background: rgba(255, 178, 189, 1);
 }
 
+
+/* ======================== */
+/* --- CỤM SCRAPBOOK TRANG TRÍ --- */
+.scrapbook-section {
+    position: absolute;
+    /* top của nút chỉ đường là: calc(58vh + 260px) + chiều cao ảnh (khoảng 380px) + khoảng cách đệm */
+    top: calc(58vh + 1300px);
+    left: 50%;
+    transform: translateX(-50%) scale(1.8);
+    width: 360px;
+    height: 420px;
+    margin: 0;
+    z-index: 15;
+}
+
+/* 1. Miếng giấy kẻ caro nền xéo */
+.deco-plaid-tag {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    width: 140px;
+    height: 180px;
+    transform: rotate(35deg);
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.deco-plaid-tag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 2. Khung ảnh nền chấm bi nghiêng sang trái */
+.scrapbook-frame {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    width: 200px;
+    height: 290px;
+    transform: rotate(-10deg);
+    z-index: 2;
+    padding: 12px;
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.scrapbook-frame .frame-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.photos-stack {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+}
+
+.inner-photo {
+    width: 100%;
+    height: 48%;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 3px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.inner-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 3. Sticker Hoa ly hồng */
+.deco-flower {
+    position: absolute;
+    bottom: 90px;
+    left: 10px;
+    width: 80px;
+    height: 80px;
+    z-index: 4;
+    transform: rotate(-12deg);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+}
+
+.deco-flower img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 4. Nhân vật đứng viền trắng sticker */
+/* Container bao ngoài */
+.cutout-person {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 175px;
+    height: auto;
+    z-index: 5;
+    /* Đặt hiệu ứng viền trực tiếp lên container */
+    filter: 
+        drop-shadow(-3px -3px 0 #ffffff)
+        drop-shadow(3px -3px 0 #ffffff)
+        drop-shadow(-3px 3px 0 #ffffff)
+        drop-shadow(3px 3px 0 #ffffff)
+        drop-shadow(0 -3px 0 #ffffff)
+        drop-shadow(0 3px 0 #ffffff)
+        drop-shadow(-3px 0 0 #ffffff)
+        drop-shadow(3px 0 0 #ffffff)
+        drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+}
+
+/* Ảnh nhân vật: Cắt xén 4 cạnh để loại bỏ hoàn toàn các đường viền rác */
+.cutout-person img {
+    width: 100%;
+    height: auto;
+    display: block;
+    padding: 0;
+    filter: none; /* Bỏ filter ở img */
+    /* Cắt bớt 1.5% ở đáy và 1.5% ở mép phải */
+    clip-path: inset(0 1.5% 1.5% 0); 
+}
+
+/* 5. Bong bóng tin nhắn kèm đuôi nhọn */
+.speech-bubble {
+    position: absolute;
+    bottom: 30px;
+    left: -10px;
+    width: 190px;
+    background: #e8f5e9;
+    color: #2e382d;
+    padding: 10px 14px;
+    font-size: 11.5px;
+    line-height: 1.45;
+    font-weight: 500;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    z-index: 6;
+}
+
+/* Đuôi nhọn của bong bóng chat chỉ về phía nhân vật */
+/* .speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 18px;
+    border-width: 8px 8px 0 0;
+    border-style: solid;
+    border-color: #e8f5e9 transparent transparent transparent;
+    transform: rotate(-15deg);
+} */
 /* Responsive cho Mobile */
 @media (max-width: 768px) {
     .container {
@@ -623,5 +786,14 @@ body, html {
     .map-button {
         font-size: 11px;
         padding: 6px 12px;
+    }
+    .scrapbook-section {
+        /* top của nút mobile là: calc(50vh + 205px) + chiều cao ảnh mobile (khoảng 300px) + đệm */
+        top: calc(50vh + 520px);
+        left: 50%;
+        transform: translateX(-50%) scale(1.1);
+        transform-origin: top center;
+        width: 320px;
+        height: 380px;
     }
 }
