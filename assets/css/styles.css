@@ -3,11 +3,14 @@ body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 5000px;
+    height: 100%;
     overflow-y: auto; /* Cho phép cuộn trang dọc để xem hết hình nền */
     overflow-x: hidden;
     font-family: 'Montserrat', sans-serif;
     background-color: #f7fafc;
+}
+:root {
+    --text-color: #8D404C;
 }
 
 /* --- Container cảnh chính --- */
@@ -18,14 +21,20 @@ body, html {
     margin: 0;
     box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
     overflow: hidden;
+    /* Đặt ảnh nền tự động co phủ kín */
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    
+    /* Khoảng đệm dưới cùng */
+    padding-bottom: 60px;
+    box-sizing: border-box;
 }
 
 /* --- Thiết lập Ảnh nền --- */
 .background-image {
-    width: 100%;
-    height: auto;
-    display: block; /* Chiếm kích thước tự nhiên để đẩy chiều cao container */
-    z-index: 1;
+    display: none;
 }
 
 /* --- Lớp phong thư MẶT SAU (chứa lòng thư và nắp thư mở) --- */
@@ -34,8 +43,8 @@ body, html {
     top: 58vh; /* Định vị theo chiều dọc màn hình viewport để luôn hiện ngay khi vào trang */
     left: 50%;
     transform: translateX(-50%);
-    width: 320px; /* Chiều rộng cố định cho phong thư */
-    height: 257px; /* Chiều cao tương ứng với tỉ lệ của phong thư đóng */
+    width: 360px; /* Chiều rộng cố định cho phong thư */
+    height: 290px; /* Chiều cao tương ứng với tỉ lệ của phong thư đóng */
     z-index: 10;
     animation: bobbing 4s ease-in-out infinite;
     transition: transform 0.5s ease;
@@ -64,8 +73,8 @@ body, html {
     top: 58vh; /* Đồng bộ chiều cao với mặt sau phong thư */
     left: 50%;
     transform: translateX(-50%);
-    width: 320px;
-    height: 257px;
+    width: 360px;
+    height: 290px;
     z-index: 12; /* Nằm trên lớp vật phẩm bay */
     animation: bobbing 4s ease-in-out infinite;
     transition: transform 0.5s ease;
@@ -126,8 +135,8 @@ body, html {
 
 /* 3. Thiệp mời */
 .card-frame {
-    width: 240px;
-    height: 320px;
+    width: 320px;
+    height: 400px;
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -146,7 +155,7 @@ body, html {
     align-items: center;
     justify-content: center;
     text-align: center;
-    opacity: 0; /* Ẩn chữ khi ở trong thư */
+    /* opacity: 0; Ẩn chữ khi ở trong thư */
     transition: opacity 0.6s ease;
     padding: 10px;
     box-sizing: border-box;
@@ -155,33 +164,34 @@ body, html {
 /* Typography phong cách thiệp cưới/thiệp tốt nghiệp cao cấp */
 .title-main {
     font-family: 'Great Vibes', cursive;
-    font-size: 32px;
-    color: #1a365d;
+    font-size: 30px;
+    color: var(--text-color);
     line-height: 1.1;
     margin-top: 15px;
 }
 
 .title-sub {
     font-family: 'Great Vibes', cursive;
-    font-size: 24px;
-    color: #2b6cb0;
+    font-size: 20px;
+    color: var(--text-color);
     margin-top: -5px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .invite-badge {
     font-family: 'Playfair Display', serif;
-    font-size: 10px;
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 2px;
-    color: #c53030;
+    letter-spacing: 1px;
+    color: var(--text-color);
     margin-bottom: 2px;
 }
 
 .invite-desc {
-    font-size: 9px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
     font-style: italic;
-    color: #4a5568;
+    color: var(--text-color);
     margin-bottom: 8px;
 }
 
@@ -195,43 +205,61 @@ body, html {
 .details-divider .line {
     flex: 1;
     height: 1px;
-    background-color: #cbd5e0;
+    background-color: var(--text-color);
 }
 
 .details-divider .star {
     font-size: 7px;
-    color: #a0aec0;
+    color: var(--text-color);
     margin: 0 5px;
 }
 
 .detail-item {
-    font-size: 9px;
-    color: #2d3748;
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
+    color: var(--text-color);
 }
 
 .detail-item.place {
-    line-height: 1.2;
+    line-height: 1;
     margin-bottom: 6px;
     font-weight: 500;
 }
 
 .detail-item.place .label {
-    font-weight: bold;
-    color: #1a365d;
+    /* font-weight: bold; */
+    color: var(--text-color);
 }
 
 .detail-item.date {
     font-family: 'Playfair Display', serif;
     font-size: 20px;
     font-weight: 700;
-    color: #1a202c;
+    color: var(--text-color);
     margin: 4px 0 2px 0;
 }
 
 .detail-item.time {
+    font-family: 'Playfair Display', serif;
     font-weight: 600;
-    font-size: 10px;
-    color: #4a5568;
+    font-size: 20px;
+    color: var(--text-color);
+}
+.invite-dear {
+    font-family: 'Playfair Display', serif; /* Hoặc font viết tay tuỳ bạn */
+    font-size: 15px;
+    color: var(--text-color);
+    margin: 4px 0 8px 0;
+    font-style: italic;
+}
+
+.guest-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
+    /* font-weight: bold; */
+    color: var(--text-color);
+    margin-left: 4px;
+    display: inline-block;
 }
 
 
@@ -243,15 +271,15 @@ body, html {
 }
 
 .scene-container.envelope-opened .photo-item {
-    transform: translate(-120px, -20px) scale(0.42) rotate(-14deg);
+    transform: translate(-150px, -70px) scale(0.42) rotate(-14deg);
 }
 
 .scene-container.envelope-opened .vinyl-item {
-    transform: translate(-50%, 0px) scale(0.44) rotate(0deg);
+    transform: translate(-20px, -50px) scale(0.44) rotate(14deg);
 }
 
 .scene-container.envelope-opened .card-item {
-    transform: translate(15px, -20px) scale(0.42) rotate(14deg);
+    transform: translate(-150px, -110px) scale(0.42) rotate(8deg);
 }
 
 /* Hiệu ứng di chuột khi đang xếp trong thư */
@@ -261,21 +289,21 @@ body, html {
 }
 
 .scene-container.envelope-opened:not(.spread-out) .photo-item:hover {
-    transform: translate(-120px, -40px) scale(0.46) rotate(-10deg);
+    transform: translate(-150px, -100px) scale(0.46) rotate(-10deg);
 }
 
 .scene-container.envelope-opened:not(.spread-out) .vinyl-item:hover {
-    transform: translate(-50%, -20px) scale(0.48) rotate(15deg);
+    transform: translate(-20px, -80px) scale(0.48) rotate(10deg);
 }
 
 .scene-container.envelope-opened:not(.spread-out) .card-item:hover {
-    transform: translate(15px, -40px) scale(0.46) rotate(10deg);
+    transform: translate(-150px, -140px) scale(0.46) rotate(10deg);
 }
 
 
 /* --- STATE 2: Các vật phẩm bay ra màn hình (Spread Out) --- */
 .scene-container.spread-out .floating-item {
-    top: 10vh; /* Bay lên bầu trời theo tỉ lệ màn hình viewport */
+    top: 15vh; /* Bay lên bầu trời theo tỉ lệ màn hình viewport */
     pointer-events: auto;
 }
 
@@ -297,7 +325,7 @@ body, html {
 
 .scene-container.spread-out .card-item {
     left: 50%;
-    top: 24vh; /* Bố cục thiệp mời nổi ở trung tâm bầu trời */
+    top: 8vh; /* Bố cục thiệp mời nổi ở trung tâm bầu trời */
     transform: translate(-50%, 0) scale(1) rotate(0deg);
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
@@ -383,7 +411,7 @@ body, html {
     position: absolute;
     width: 60px;
     height: 60px;
-    top: 50%; /* Đặt chính xác ở tâm phong thư đóng */
+    top: 55%; /* Đặt chính xác ở tâm phong thư đóng */
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
@@ -414,9 +442,9 @@ body, html {
 /* --- TƯƠNG THÍCH ĐIỆN THOẠI (Responsive Mobile) --- */
 @media (max-width: 768px) {
     .envelope-container, .envelope-back-container {
-        top: 50vh; /* Nâng phong thư lên 50vh trên mobile để cân đối màn hình */
-        width: 240px;
-        height: 193px; /* 240 * (791 / 983) = 193px */
+        top: 48vh; /* Nâng phong thư lên 50vh trên mobile để cân đối màn hình */
+        width: 280px;
+        height: 225px; /* 240 * (791 / 983) = 193px */
     }
     
     .lock-button {
@@ -441,83 +469,105 @@ body, html {
     }
 
     .card-frame {
-        width: 150px;
-        height: 200px;
+        width: 180px;
+        height: 240px;
     }
 
     /* Căn chỉnh lại typography của thiệp mời trên điện thoại */
     .title-main {
-        font-size: 19px;
-        margin-top: 5px;
+        font-size: 25px;
+        /* margin-top: 5px; */
     }
     
     .title-sub {
         font-size: 15px;
-        margin-top: -3px;
+        /* margin-top: -3px; */
     }
 
     .invite-badge {
-        font-size: 7px;
-        letter-spacing: 1px;
+        font-size: 15px;
+        margin-top: -10px;
+        letter-spacing: 0px;
     }
 
     .invite-desc {
-        font-size: 6px;
-        margin-bottom: 4px;
-    }
-
-    .details-divider {
-        margin-bottom: 5px;
+        font-size: 15px;
+        margin: -5px 0 4px 0;
     }
 
     .detail-item {
-        font-size: 6px;
-    }
-
-    .detail-item.place {
-        margin-bottom: 2px;
+        font-size: 12px;
     }
 
     .detail-item.date {
         font-size: 12px;
-        margin: 2px 0 0 0;
+        margin: -2px 0 0 0;
     }
 
     .detail-item.time {
-        font-size: 7px;
+        font-size: 12px;
+        margin: -2px 0 0 0;
     }
 
+    .invite-dear {
+        font-size: 12px;
+        margin-top: -2px;
+        /* margin: 4px 0 8px 0; */
+    }
+
+    .guest-name {
+        font-size: 12px;
+        /* margin-left: 4px; */
+    }
     /* Vị trí các vật phẩm khi xếp trong thư (Mobile) */
     .scene-container.envelope-opened .photo-item {
-        transform: translate(-80px, -15px) scale(0.55) rotate(-14deg);
-    }
-
-    .scene-container.envelope-opened .vinyl-item {
-        transform: translate(-50%, 0px) scale(0.6) rotate(0deg);
+        transform: translate(-100px, -30px) scale(0.55) rotate(-14deg);
     }
 
     .scene-container.envelope-opened .card-item {
-        transform: translate(15px, -15px) scale(0.55) rotate(14deg);
+        transform: translate(-50%, -30px) scale(0.6) rotate(10deg);
+    }
+
+    .scene-container.envelope-opened .vinyl-item {
+        transform: translate(15px, -30px) scale(0.75) rotate(14deg);
+    }
+    /* Hiệu ứng di chuột khi đang xếp trong thư */
+    .scene-container.envelope-opened:not(.spread-out) .floating-item:hover {
+        z-index: 20;
+        filter: brightness(1.05);
+    }
+
+    .scene-container.envelope-opened:not(.spread-out) .photo-item:hover {
+        transform: translate(-110px, -70px) scale(0.55) rotate(-10deg);
+    }
+
+    .scene-container.envelope-opened:not(.spread-out) .vinyl-item:hover {
+        transform: translate(0px, -55px) scale(0.7) rotate(10deg);
+    }
+
+    .scene-container.envelope-opened:not(.spread-out) .card-item:hover {
+        transform: translate(-50%, -60px) scale(0.75) rotate(10deg);
     }
 
     /* Vị trí các vật phẩm khi bay lên (Mobile) */
     .scene-container.spread-out .photo-item {
-        left: 24%;
-        top: 12vh; /* Vị trí bay lên theo tỉ lệ màn hình dọc */
+        left: 18%;
+        top: 10vh; /* Vị trí bay lên theo tỉ lệ màn hình dọc */
         transform: translate(-50%, 0) scale(1) rotate(-8deg);
     }
 
     .scene-container.spread-out .vinyl-item {
-        left: 76%;
+        left: 80%;
         top: 12vh;
         transform: translate(-50%, 0) scale(1) rotate(0deg);
     }
 
     .scene-container.spread-out .card-item {
         left: 50%;
-        top: 38vh; /* Cân đối nổi bật trên màn hình điện thoại */
-        transform: translate(-50%, 0) scale(1.1) rotate(0deg);
+        top: 10vh; /* Cân đối nổi bật trên màn hình điện thoại */
+        transform: translate(-50%, 0) scale(1.5) rotate(0deg);
     }
+
 }
 
 /* --- PHẦN BẢN ĐỒ / ĐỊA CHỈ UTC (BOTTOM SECTION) --- */
@@ -613,7 +663,7 @@ body, html {
 .scrapbook-section {
     position: absolute;
     /* top của nút chỉ đường là: calc(58vh + 260px) + chiều cao ảnh (khoảng 380px) + khoảng cách đệm */
-    top: calc(58vh + 1300px);
+    top: calc(58vh + 1000px);
     left: 50%;
     transform: translateX(-50%) scale(1.8);
     width: 360px;
@@ -694,11 +744,11 @@ body, html {
 /* 3. Sticker Hoa ly hồng */
 .deco-flower {
     position: absolute;
-    bottom: 90px;
+    bottom: 80px;
     left: 10px;
     width: 80px;
     height: 80px;
-    z-index: 4;
+    z-index: 6;
     transform: rotate(-12deg);
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
 }
@@ -745,7 +795,7 @@ body, html {
 /* 5. Bong bóng tin nhắn kèm đuôi nhọn */
 .speech-bubble {
     position: absolute;
-    bottom: 30px;
+    bottom: 50px;
     left: -10px;
     width: 190px;
     background: #e8f5e9;
@@ -756,7 +806,7 @@ body, html {
     font-weight: 500;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    z-index: 6;
+    z-index: 5;
 }
 
 /* Đuôi nhọn của bong bóng chat chỉ về phía nhân vật */
@@ -770,17 +820,228 @@ body, html {
     border-color: #e8f5e9 transparent transparent transparent;
     transform: rotate(-15deg);
 } */
+ /* ====================== */
+ /* --- CỤM LIÊN HỆ / ẢNH CẦU THANG --- */
+.contact-section {
+    position: absolute;
+    /* Đặt nối tiếp ngay dưới cụm scrapbook */
+    top: calc(58vh + 1700px);
+    left: 50%;
+    transform: translateX(-50%) scale(1.5);
+    width: 360px;
+    height: 400px;
+    z-index: 15;
+}
+
+/* Khung ảnh cầu thang */
+.stair-photo-wrapper {
+    position: absolute;
+    top: 0;
+    left: -40px;
+    width: 290px;
+    height: 380px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.stair-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.contact-bubble {
+    position: absolute;
+    top: 65px;
+    right: -50px;
+    width: 220px;
+    background: #ffe3e8; 
+    padding: 12px 14px;
+    font-size: 11.5px;
+    line-height: 1.45;
+    font-weight: 500;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    text-align: right;
+    box-sizing: border-box;
+}
+
+.butterfly {
+    position: absolute;
+    z-index: 16; /* Nằm trên cả ảnh và bong bóng */
+    pointer-events: none;
+}
+
+.butterfly img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+}
+
+/* Con bướm nhỏ phía trên */
+.butterfly-1 {
+    top: -30px;
+    left: 175px;
+    width: 42px;
+    transform: rotate(15deg);
+    animation: butterflyFloat1 4s ease-in-out infinite;
+}
+
+/* Con bướm lớn hơn phía dưới */
+.butterfly-2 {
+    top: 15px;
+    left: 190px;
+    width: 52px;
+    transform: rotate(-10deg);
+    animation: butterflyFloat2 5s ease-in-out infinite;
+}
+
+/* Hiệu ứng bay nhấp nhô nhẹ nhàng */
+@keyframes butterflyFloat1 {
+    0%, 100% {
+        transform: translateY(0) rotate(15deg) scale(1);
+    }
+    50% {
+        transform: translateY(-6px) rotate(22deg) scale(1.05);
+    }
+}
+
+@keyframes butterflyFloat2 {
+    0%, 100% {
+        transform: translateY(0) rotate(-10deg) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) rotate(-4deg) scale(1.03);
+    }
+}
+/* ======================================== */
+/* --- CỤM BỘ ẢNH POLAROID XÒE QUẠT --- */
+.polaroid-gallery-section {
+    position: absolute;
+    top: calc(58vh + 2300px); /* Đặt nối tiếp ngay dưới cụm ảnh cầu thang */
+    left: 50%;
+    transform: translateX(-50%) scale(1.5);
+    width: 100%;
+    max-width: 1600px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+}
+
+.polaroid-fan-container {
+    position: relative;
+    width: 480px;
+    height: 380px;
+    margin: 0 auto;
+}
+
+/* Khung ảnh Polaroid viền trắng */
+/* Khung ảnh Polaroid */
+.polaroid-item {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform-origin: center 85%; /* Trọng tâm xòe tự nhiên ở phần đáy ảnh */
+    /* Ban đầu: gom tại trung tâm, hơi nhỏ và ẩn nhẹ */
+    transform: translateX(-50%) rotate(0deg) scale(1.2);
+    opacity: 1;
+    /* Tăng thời gian lên 1.4s với hiệu ứng hãm phanh êm ái */
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 1.2s ease-out;
+    will-change: transform;
+}
+
+/* --- TRẠNG THÁI XÒE (ACTIVE) --- */
+
+
+.polaroid-gallery-section.active .polaroid-left {
+    transform: translateX(-210px) translateY(15px) rotate(-14deg) scale(1);
+    /* Giảm độ trễ để các ảnh bung ra đồng đều, mượt mà */
+    transition-delay: 0.05s;
+}
+
+.polaroid-gallery-section.active .polaroid-center {
+    transform: translateX(-50%) translateY(0px) rotate(0deg) scale(1);
+    transition-delay: 0.12s;
+}
+
+.polaroid-gallery-section.active .polaroid-right {
+    transform: translateX(55px) translateY(10px) rotate(12deg) scale(1);
+    transition-delay: 0.2s;
+}
+
+/* Chữ kết trồi lên nhẹ nhàng phía sau */
+.gallery-caption {
+    margin-top: -20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #2b3a2a;
+    letter-spacing: 0.2px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, 
+                opacity 1s ease-out 0.35s;
+}
+
+.polaroid-gallery-section.active .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.polaroid-card {
+    background: #ffffff;
+    padding: 10px 10px 30px 10px; /* Viền trắng kiểu Polaroid cổ điển */
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    width: 165px;
+    height: 250px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.polaroid-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+}
+
+/* Thứ tự lớp hiển thị */
+.polaroid-left { z-index: 1; }
+.polaroid-center { z-index: 2; }
+.polaroid-right { z-index: 3; }
+
+
+/* Chữ kết */
+.gallery-caption {
+    /* margin-top: 15px; */
+    font-size: 18px;
+    font-weight: 500;
+    color: #2b3a2a;
+    letter-spacing: 0.2px;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.8s ease 0.6s;
+}
+
+
 /* Responsive cho Mobile */
 @media (max-width: 768px) {
     .container {
-        top: calc(50vh + 205px); /* Đồng bộ theo mốc 50vh của thư trên mobile */
-        width: 220px;
+        top: calc(50vh + 220px); /* Đồng bộ theo mốc 50vh của thư trên mobile */
+        width: 380px;
         margin-bottom: 30px;
     }
 
     .map-icon {
-        width: 38px;
-        height: 38px;
+        width: 30px;
+        height: 30px;
     }
 
     .map-button {
@@ -795,5 +1056,64 @@ body, html {
         transform-origin: top center;
         width: 320px;
         height: 380px;
+    }
+    .contact-section {
+        top: calc(50vh + 920px);
+        width: 320px;
+        transform: translateX(-50%) scale(1.4);
+        transform-origin: top center;
+    }
+    
+    .stair-photo-wrapper {
+        width: 185px;
+        height: 270px;
+        left: 5px;
+    }
+
+    .contact-bubble {
+        top: 55px;
+        right: 0px;
+        width: 150px;
+        font-size: 10px;
+        padding: 10px 12px;
+    }
+    .butterfly-1 {
+        top: -30px;
+        left: 150px;
+        width: 34px;
+    }
+
+    .butterfly-2 {
+        top: 10px;
+        left: 165px;
+        width: 42px;
+    }
+    .polaroid-gallery-section {
+        top: calc(50vh + 1300px);
+        height: 400px;
+    }
+
+    .polaroid-fan-container {
+        width: 260px;
+        height: 300px;
+    }
+
+    .polaroid-card {
+        width: 125px;
+        height: 190px;
+        padding: 6px 6px 20px 6px;
+    }
+
+    .polaroid-gallery-section.active .polaroid-left {
+        transform: translateX(-115px) translateY(10px) rotate(-13deg) scale(1);
+    }
+
+    .polaroid-gallery-section.active .polaroid-right {
+        transform: translateX(0px) translateY(8px) rotate(11deg) scale(1);
+    }
+
+    .gallery-caption {
+        font-size: 15px;
+        /* margin-top: 10px; */
     }
 }

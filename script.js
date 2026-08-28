@@ -90,4 +90,55 @@ document.addEventListener("DOMContentLoaded", function() {
     if (envelopeBackContainer) {
         envelopeBackContainer.addEventListener("click", handleEnvelopeClick);
     }
+    function adjustSceneHeight() {
+        const scene = document.getElementById("sceneContainer");
+        const lastSection = document.getElementById("polaroidSection");
+
+        if (scene && lastSection) {
+            // Lấy vị trí đỉnh + chiều cao của phần tử cuối cùng
+            const totalHeight = lastSection.offsetTop + lastSection.offsetHeight + 80;
+            scene.style.minHeight = totalHeight + "px";
+        }
+    }
+
+    // Chạy khi load trang và khi resize màn hình / xoay điện thoại
+    window.addEventListener("load", adjustSceneHeight);
+    window.addEventListener("resize", adjustSceneHeight);
+
+    // Gọi lại khi hiệu ứng mở thư / xòe ảnh kích hoạt
+    setTimeout(adjustSceneHeight, 500);
+});
+
+// Tự động kích hoạt hiệu ứng xòe ảnh khi cuộn tới vị trí
+document.addEventListener("DOMContentLoaded", () => {
+    const polaroidSection = document.getElementById("polaroidSection");
+
+    if (polaroidSection) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+                // Vừa chạm 10% mép dưới màn hình là kích hoạt xòe ngay
+                if (entry.isIntersecting) {
+                    polaroidSection.classList.add("active");
+                    obs.unobserve(polaroidSection); // Giữ trạng thái xòe cố định sau khi kích hoạt
+                }
+            });
+        }, {
+            threshold: 0.1, // Nhận diện cực nhạy khi vừa lướt tới
+            rootMargin: "0px 0px -50px 0px" 
+        });
+
+        observer.observe(polaroidSection);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Đọc tham số URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const guest = urlParams.get('to') || urlParams.get('name');
+
+    // 2. Điền tên vào thiệp nếu có tham số trên link
+    const guestElement = document.getElementById("guestName");
+    if (guest && guestElement) {
+        guestElement.textContent = guest;
+    }
 });

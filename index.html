@@ -15,7 +15,7 @@
     <!-- Container chính để giữ tất cả các phần tử trên nền -->
     <div class="scene-container" id="sceneContainer">
         <!-- Ảnh nền -->
-        <img src="assets/img/bg.png" alt="Cảnh nền" class="background-image">
+        <!-- <img src="assets/img/background.png" alt="Cảnh nền" class="background-image"> -->
 
         <!-- Lớp phong thư MẶT SAU (chỉ chứa lòng thư và nắp thư mở) -->
         <div class="envelope-back-container" id="envelopeBackContainer">
@@ -41,10 +41,14 @@
 
             <!-- Thiệp mời -->
             <div class="floating-item card-item" id="cardItem">
-                <div class="card-frame" style="background-image: url('assets/img/invitation.png');">
+                <div class="card-frame" style="background-image: url('assets/img/invitation-bg.png');">
                     <div class="invitation-text" id="invitationText">
                         <div class="title-main">Phan Linh's</div>
-                        <div class="title-sub">graduation</div>
+                        <div class="title-sub">Graduation</div>
+                        <!-- Dòng Dear [Tên khách mời] -->
+                        <div class="invite-dear">
+                            Dear <span id="guestName" class="guest-name">Bạn</span>
+                        </div>
                         <div class="invite-badge">YOU'RE INVITED</div>
                         <div class="invite-desc">to my graduation photoshoot</div>
                         <div class="details-divider">
@@ -53,10 +57,10 @@
                             <span class="star">★</span>
                         </div>
                         <div class="detail-item place">
-                            <span class="label">Place:</span> Trường Đại học Giao thông Vận tải
+                            <span class="label">Venue:</span> University of Transport and Communications
                         </div>
-                        <div class="detail-item date">07.09.2026</div>
-                        <div class="detail-item time">2PM - 3.30PM</div>
+                        <div class="detail-item date">September 7th, 2026</div>
+                        <div class="detail-item time">2:30 PM - 3:30 PM</div>
                     </div>
                 </div>
             </div>
@@ -124,7 +128,55 @@
 
             <!-- Bong bóng hội thoại nhắn nhủ -->
             <div class="speech-bubble">
-                Các tình yêu nhớ đến đúng khung giờ để đảm bảo đúng timeline của Linh nha
+                Các tình yêu nhớ đi đường cẩn thận và đến đúng giờ nhaaa
+            </div>
+        </div>
+        <!-- Cụm Ảnh cầu thang + Bướm + Bong bóng liên hệ -->
+        <div class="contact-section">
+            <!-- Ảnh tốt nghiệp ở cầu thang -->
+            <div class="stair-photo-wrapper">
+                <img src="assets/img/photo_4.jpg" alt="Ảnh cầu thang" class="stair-photo">
+            </div>
+            <!-- Bướm trang trí góc trên bên phải -->
+            <div class="butterfly butterfly-1">
+                <img src="assets/img/dec_1.png" alt="Bướm 1">
+            </div>
+            <div class="butterfly butterfly-2">
+                <img src="assets/img/dec_2.png" alt="Bướm 2">
+            </div>
+            <!-- Bong bóng chat nhắn nhủ màu hồng nhạt -->
+            <div class="contact-bubble">
+                Có thể liên hệ Linh bằng messenger hoặc zalo nếu ko tìm thấy Linh ạ
+            </div>
+        </div>
+        <!-- Cụm Fan Polaroid Gallery -->
+        <div class="polaroid-gallery-section" id="polaroidSection">
+            <div class="polaroid-fan-container">
+                <!-- Ảnh trái (Nghiêng trái) -->
+                <div class="polaroid-item polaroid-left">
+                    <div class="polaroid-card">
+                        <img src="assets/img/photo_7.jpg" alt="Ảnh 1">
+                    </div>
+                </div>
+
+                <!-- Ảnh giữa (Đứng thẳng) -->
+                <div class="polaroid-item polaroid-center">
+                    <div class="polaroid-card">
+                        <img src="assets/img/photo_5.jpg" alt="Ảnh 2">
+                    </div>
+                </div>
+
+                <!-- Ảnh phải (Nghiêng phải) -->
+                <div class="polaroid-item polaroid-right">
+                    <div class="polaroid-card">
+                        <img src="assets/img/photo_6.jpg" alt="Ảnh 3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dòng chữ kết bài -->
+            <div class="gallery-caption">
+                Hẹn gặp các tình yêu nhóoo
             </div>
         </div>
     </div>
