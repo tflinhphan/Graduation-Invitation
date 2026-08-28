@@ -15,69 +15,73 @@
     <!-- Container chính để giữ tất cả các phần tử trên nền -->
     <div class="scene-container" id="sceneContainer">
         <!-- Ảnh nền -->
-        <!-- <img src="assets/img/background.png" alt="Cảnh nền" class="background-image"> -->
+        
 
         <!-- Lớp phong thư MẶT SAU (chỉ chứa lòng thư và nắp thư mở) -->
-        <div class="envelope-back-container" id="envelopeBackContainer">
-            <img src="assets/img/envelope_open.png" alt="Bức thư mở mặt sau" class="open-letter-back">
-        </div>
-
-        <!-- 3 Vật phẩm bay (nằm bên ngoài envelope-container để bay tự do khắp màn hình) -->
-        <div class="interactive-items-container" id="itemsContainer">
-            <!-- Ảnh tốt nghiệp -->
-            <div class="floating-item photo-item" id="photoItem">
-                <div class="photo-card">
-                    <img src="assets/img/photo_card.jpg" alt="Ảnh tốt nghiệp">
-                </div>
+                <!-- Lớp phong thư bọc trong wrapper -->
+        <div class="envelope-section-wrapper">
+            <!-- Lớp phong thư MẶT SAU (chứa lòng thư và nắp thư mở) -->
+            <div class="envelope-back-container" id="envelopeBackContainer">
+                <img src="assets/img/envelope_open.png" alt="Bức thư mở mặt sau" class="open-letter-back">
             </div>
 
-            <!-- Đĩa than -->
-            <div class="floating-item vinyl-item" id="vinylItem">
-                <div class="vinyl-disc">
-                    <img src="assets/img/disc.png" alt="Đĩa than" class="vinyl-image">
-                    <div class="vinyl-center"></div>
+            <!-- 3 Vật phẩm bay (nằm bên ngoài envelope-container để bay tự do khắp màn hình) -->
+            <div class="interactive-items-container" id="itemsContainer">
+                <!-- Ảnh tốt nghiệp -->
+                <div class="floating-item photo-item" id="photoItem">
+                    <div class="photo-card">
+                        <img src="assets/img/photo_card.jpg" alt="Ảnh tốt nghiệp">
+                    </div>
                 </div>
-            </div>
 
-            <!-- Thiệp mời -->
-            <div class="floating-item card-item" id="cardItem">
-                <div class="card-frame" style="background-image: url('assets/img/invitation-bg.png');">
-                    <div class="invitation-text" id="invitationText">
-                        <div class="title-main">Phan Linh's</div>
-                        <div class="title-sub">Graduation</div>
-                        <!-- Dòng Dear [Tên khách mời] -->
-                        <div class="invite-dear">
-                            Dear <span id="guestName" class="guest-name">Bạn</span>
+                <!-- Đĩa than -->
+                <div class="floating-item vinyl-item" id="vinylItem">
+                    <div class="vinyl-disc">
+                        <img src="assets/img/disc.png" alt="Đĩa than" class="vinyl-image">
+                        <div class="vinyl-center"></div>
+                    </div>
+                </div>
+
+                <!-- Thiệp mời -->
+                <div class="floating-item card-item" id="cardItem">
+                    <div class="card-frame" style="background-image: url('assets/img/invitation-bg.png');">
+                        <div class="invitation-text" id="invitationText">
+                            <div class="title-main">Phan Linh's</div>
+                            <div class="title-sub">Graduation</div>
+                            <!-- Dòng Dear [Tên khách mời] -->
+                            <div class="invite-dear">
+                                Dear <span id="guestName" class="guest-name">Bạn</span>
+                            </div>
+                            <div class="invite-badge">YOU'RE INVITED</div>
+                            <div class="invite-desc">to my graduation photoshoot</div>
+                            <div class="details-divider">
+                                <span class="star">★</span>
+                                <span class="line"></span>
+                                <span class="star">★</span>
+                            </div>
+                            <div class="detail-item place">
+                                <span class="label">Venue:</span> University of Transport and Communications
+                            </div>
+                            <div class="detail-item date">September 7th, 2026</div>
+                            <div class="detail-item time">2:30 PM - 3:30 PM</div>
                         </div>
-                        <div class="invite-badge">YOU'RE INVITED</div>
-                        <div class="invite-desc">to my graduation photoshoot</div>
-                        <div class="details-divider">
-                            <span class="star">★</span>
-                            <span class="line"></span>
-                            <span class="star">★</span>
-                        </div>
-                        <div class="detail-item place">
-                            <span class="label">Venue:</span> University of Transport and Communications
-                        </div>
-                        <div class="detail-item date">September 7th, 2026</div>
-                        <div class="detail-item time">2:30 PM - 3:30 PM</div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Lớp phong thư MẶT TRƯỚC (chứa nắp túi thư mở mặt trước, thư đóng, sáp seal) -->
-        <div class="envelope-container" id="envelopeContainer">
-            <!-- Thư đóng -->
-            <img src="assets/img/envelope_closed.png" alt="Bức thư đóng" class="closed-letter">
-            
-            <!-- Nút khóa (sáp seal) - chúng ta sẽ đặt nó đè lên thư -->
-            <div class="lock-button" id="lockButton">
-                <img src="assets/img/lock_button.png" alt="Nút khóa">
+            <!-- Lớp phong thư MẶT TRƯỚC (chứa nắp túi thư mở mặt trước, thư đóng, sáp seal) -->
+            <div class="envelope-container" id="envelopeContainer">
+                <!-- Thư đóng -->
+                <img src="assets/img/envelope_closed.png" alt="Bức thư đóng" class="closed-letter">
+                
+                <!-- Nút khóa (sáp seal) - chúng ta sẽ đặt nó đè lên thư -->
+                <div class="lock-button" id="lockButton">
+                    <img src="assets/img/lock_button.png" alt="Nút khóa">
+                </div>
+                
+                <!-- Thư mở mặt trước (túi thư) -->
+                <img src="assets/img/envelope_open-2.png" alt="Bức thư mở mặt trước" class="open-letter-front" id="openLetterFront">
             </div>
-            
-            <!-- Thư mở mặt trước (túi thư) -->
-            <img src="assets/img/envelope_open-2.png" alt="Bức thư mở mặt trước" class="open-letter-front" id="openLetterFront">
         </div>
 
         <div class="container">

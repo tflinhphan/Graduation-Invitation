@@ -34,7 +34,57 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Hàm xử lý việc bay ra / thu hồi các vật phẩm
+    // Tạo đối tượng âm thanh cho nhạc nền
+    const bgMusic = new Audio('assets/sounds/music.mp3');
+    bgMusic.loop = true;
+
+    // Hàm cho các vật phẩm bay ra màn hình và phát nhạc
+    function spreadOutItems() {
+        sceneContainer.classList.add("spread-out");
+        isSpread = true;
+        
+        bgMusic.play().then(() => {
+            vinylItem.classList.add("music-playing");
+            vinylItem.classList.remove("music-paused");
+        }).catch(err => {
+            console.log("Autoplay blocked or play failed:", err);
+            // Vẫn cho đĩa quay bằng CSS animation dù chưa có tương tác âm thanh trực tiếp
+            vinylItem.classList.add("music-playing");
+            vinylItem.classList.remove("music-paused");
+        });
+        console.log("Items spread out! isSpread:", isSpread);
+    }
+
+    // Hàm thu hồi các vật phẩm về bao thư và tắt nhạc
+    function returnItems() {
+        sceneContainer.classList.remove("spread-out");
+        isSpread = false;
+        
+        bgMusic.pause();
+        bgMusic.currentTime = 0; // reset nhạc về đầu
+        vinylItem.classList.remove("music-playing", "music-paused");
+        console.log("Items returned! isSpread:", isSpread);
+    }
+
+    // Bật/tắt xoay đĩa và phát nhạc riêng biệt khi click vào đĩa ở trạng thái bay ra
+    function toggleVinylMusic() {
+        if (vinylItem.classList.contains("music-playing")) {
+            bgMusic.pause();
+            vinylItem.classList.remove("music-playing");
+            vinylItem.classList.add("music-paused");
+            console.log("Vinyl music paused");
+        } else {
+            bgMusic.play().then(() => {
+                vinylItem.classList.add("music-playing");
+                vinylItem.classList.remove("music-paused");
+                console.log("Vinyl music playing");
+            }).catch(err => {
+                console.log("Play failed:", err);
+            });
+        }
+    }
+
+    // Hàm xử lý việc bay ra / thu hồi các vật phẩm khi click ảnh hoặc thiệp
     function toggleSpread(event) {
         console.log("toggleSpread clicked! Element:", event.currentTarget.id, "isLetterOpen:", isLetterOpen, "isSpread:", isSpread);
         if (!isLetterOpen) {
@@ -44,21 +94,28 @@ document.addEventListener("DOMContentLoaded", function() {
         event.stopPropagation();
 
         if (!isSpread) {
-            // Nếu chưa bay ra, cho bay ra toàn màn hình
-            sceneContainer.classList.add("spread-out");
-            isSpread = true;
-            console.log("Items spread out! isSpread:", isSpread);
+            spreadOutItems();
         } else {
-            // Nếu đang bay ra, thu hồi lại vào trong thư
-            sceneContainer.classList.remove("spread-out");
-            isSpread = false;
-            console.log("Items returned! isSpread:", isSpread);
+            returnItems();
         }
     }
 
     // 2. Nhấp vào các vật phẩm để bay ra / thu hồi
     photoItem.addEventListener("click", toggleSpread);
-    vinylItem.addEventListener("click", toggleSpread);
+    
+    // Đĩa than có xử lý bật/tắt nhạc và dừng xoay riêng biệt
+    vinylItem.addEventListener("click", function(event) {
+        console.log("Vinyl clicked! isLetterOpen:", isLetterOpen, "isSpread:", isSpread);
+        if (!isLetterOpen) return;
+        event.stopPropagation();
+
+        if (!isSpread) {
+            spreadOutItems();
+        } else {
+            toggleVinylMusic();
+        }
+    });
+
     cardItem.addEventListener("click", toggleSpread);
 
     // 3. Nhấp vào vùng chứa bức thư (cả lớp mặt trước và mặt sau)
@@ -69,9 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (isLetterOpen) {
             if (isSpread) {
                 // Nếu đang bay ra, thu hồi lại vào trong thư trước
-                sceneContainer.classList.remove("spread-out");
-                isSpread = false;
-                console.log("Envelope click: items returned! isSpread:", isSpread);
+                returnItems();
             } else {
                 // Nếu đang ở trong thư, đóng thư lại
                 lockButton.classList.remove("disappear");
@@ -90,23 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (envelopeBackContainer) {
         envelopeBackContainer.addEventListener("click", handleEnvelopeClick);
     }
-    function adjustSceneHeight() {
-        const scene = document.getElementById("sceneContainer");
-        const lastSection = document.getElementById("polaroidSection");
 
-        if (scene && lastSection) {
-            // Lấy vị trí đỉnh + chiều cao của phần tử cuối cùng
-            const totalHeight = lastSection.offsetTop + lastSection.offsetHeight + 80;
-            scene.style.minHeight = totalHeight + "px";
-        }
-    }
-
-    // Chạy khi load trang và khi resize màn hình / xoay điện thoại
-    window.addEventListener("load", adjustSceneHeight);
-    window.addEventListener("resize", adjustSceneHeight);
-
-    // Gọi lại khi hiệu ứng mở thư / xòe ảnh kích hoạt
-    setTimeout(adjustSceneHeight, 500);
 });
 
 // Tự động kích hoạt hiệu ứng xòe ảnh khi cuộn tới vị trí
